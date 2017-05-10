@@ -1,0 +1,37 @@
+{
+  "name": "kumpulkumpul",
+  "version": "1.0.0",
+  "description": "MeetUp Clone",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "NODE_ENV=test mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nerdijoe/kumpulkumpul.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nerdijoe/kumpulkumpul/issues"
+  },
+  "homepage": "https://github.com/nerdijoe/kumpulkumpul#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "cors": "^2.8.3",
+    "cron": "^1.2.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "jsonwebtoken": "^7.4.0",
+    "kue": "^0.11.5",
+    "mocha": "^3.3.0",
+    "mongoose": "^4.9.8",
+    "nodemon": "^1.11.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "password-hash": "^1.2.2"
+  }
+}
