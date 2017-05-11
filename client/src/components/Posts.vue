@@ -1,13 +1,12 @@
 <template>
   <div class="hello">
-		<h1></h1>
-		<br>
+		
   </div>
 </template>
 
 <script>
 export default {
-  name: 'hello',
+  name: 'posts',
   data () {
     return {
       msg: 'Meetup Yuk'

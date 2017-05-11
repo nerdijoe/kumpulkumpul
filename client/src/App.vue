@@ -2,8 +2,9 @@
   <div id="app">
 		<navbar></navbar>
     <router-view></router-view>
-		<img src="./assets/logo.png">
-		
+
+		<img class="ui centered medium image" src="./assets/meetup.jpg">
+		<h1 class="ui centered align header">Meetup-Yuk.com </h1>
   </div>
 </template>
 

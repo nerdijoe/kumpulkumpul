@@ -6,12 +6,10 @@
       <div class="item"><button class="ui green button" id="btnLogin">Sign in</button></div>
       <div class="item"><button class="ui orange button" id="btnSignup">Sign up</button></div>
       <div class="item"><a class="ui primary button" v-on:click="loginFB">SignIn FB</a></div>
-
     </div>
     <div class="right menu" v-else>
       <div class="item">
         <h3>Welcome, {{ signin.username }}</h3></div>
-
       <div class="item"><button class="ui yellow button" v-on:click="signOut">Sign out</button></div>
     </div>
   </nav>
@@ -21,9 +19,7 @@
     <div class="ui center aligned header">
       <h3>Sign in</h3>
     </div>
-
     <div class="ui content grid container">
-
       <div class="content">
         <div class="ui form fluid">
           <div class="field">
@@ -32,7 +28,7 @@
           </div>
           <div class="field">
             <label>Password</label>
-            <input class="ui left action fluid icon input" v-model="signin.password" placeholder="Password" type="text">
+            <input class="ui left action fluid icon input" v-model="signin.password" placeholder="Password" type="password">
           </div>
 
           <button id="btnSubmitLogin" class="ui button green" v-on:click="onLogin">Sign in</button>
@@ -144,6 +140,8 @@ export default {
             console.log(response.data);
             console.log(err);
           } else {
+						self.signin.username = self.signup.username,
+						self.signin.password = self.signup.password,
             self.onLogin()
             console.log(response);
           }
