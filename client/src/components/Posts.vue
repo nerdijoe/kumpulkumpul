@@ -1,23 +1,31 @@
 <template>
 <div class="ui items">
-  <div class="item" v-for="post in listPost[0]">
+  <div class="ui left action fluid icon input">
+
+    <input type="text" placeholder=" Search" class="home-search-input" v-model="inputSearch">
+    <div type="submit" class="ui large primary button searchbtn" v-on:click="searchPost">Search</div>
+
+  </div>
+  <hr>
+
+  <div class="item" v-for="post in listPost[0] ">
     <div class="image">
       <img class="ui small image" v-bind:src="post.imageUrl">
     </div>
     <div class="content">
-      <a class="header">{{ post.name }}</a>
+      <a class="header">{{ post.title }}</a>
       <div class="meta">
         <span>{{ post.time }}</span>
       </div>
       <div class="description">
         <p>{{ post.description }}</p>
       </div>
-			<div class="extra">
+      <div class="extra">
         <div class="ui right floated primary button">
-          Buy tickets
+          Read More
           <i class="right chevron icon"></i>
         </div>
-        <div class="ui label">Limited</div>
+        <div class="ui label">{{post.rsvp.length}} people join</div>
       </div>
     </div>
   </div>
