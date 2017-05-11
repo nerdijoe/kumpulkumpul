@@ -116,7 +116,7 @@ export default {
             console.log(response)
             self.login = false;
             localStorage.setItem('token', response.data);
-            //self.getListTodos()
+            this.$router.push('/posts');
           }
         })
         .catch(error => {

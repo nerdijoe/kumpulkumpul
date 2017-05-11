@@ -1,16 +1,20 @@
 <template>
   <div id="app">
 		<navbar></navbar>
+		<div class="ui items segment padtop-6 container">
     <router-view></router-view>
-
-		<img class="ui centered medium image" src="./assets/meetup.jpg">
-		<h1 class="ui centered align header">Meetup-Yuk.com </h1>
+	</div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+	data() {
+		return {
+
+		}
+	}
 }
 </script>
 
