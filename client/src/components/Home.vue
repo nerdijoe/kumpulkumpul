@@ -1,7 +1,8 @@
 <template>
   <div class="hello">
 		<h1></h1>
-		<br>
+		<img class="ui centered medium image" src="../assets/meetup.jpg">
+		<h1 class="ui centered align header">Meetup-Yuk.com </h1>
   </div>
 </template>
 
@@ -13,7 +14,7 @@ export default {
       msg: 'Meetup Yuk'
     }
   },
-
+	
 }
 </script>
 
