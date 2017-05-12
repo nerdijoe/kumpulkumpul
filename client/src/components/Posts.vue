@@ -8,27 +8,32 @@
   </div>
   <hr>
 
-  <div class="item" v-for="post in listPost[0] ">
-    <div class="image">
-      <img class="ui small image" v-bind:src="post.imageUrl">
-    </div>
-    <div class="content">
-      <a class="header">{{ post.title }}</a>
-      <div class="meta">
-        <span>{{ post.time }}</span>
+  <div class="ui link cards">
+    <div class="card" v-for="post in listPost[0]">
+      <div class="image">
+        <img v-bind:src="post.imageUrl">
       </div>
-      <div class="description">
-        <p>{{ post.description }}</p>
-      </div>
-      <div class="extra">
-        <div class="ui right floated primary button">
-          Read More
-          <i class="right chevron icon"></i>
+      <div class="content">
+        <div class="header">{{ post.title }}</div>
+        <div class="meta">
+          <a>{{ post.time }}</a>
         </div>
-        <div class="ui label">{{post.rsvp.length}} people join</div>
+        <div class="description">
+          {{ post.description }}
+        </div>
+      </div>
+      <div class="extra content">
+        <span class="right floated ui red button" v-on:click="singlePost(post._id)">
+				Read More
+      	</span>
+        <span class="left floated ui orange button">
+        <i class="users icon"></i>
+        {{post.rsvp.length}} people join
+      </span>
       </div>
     </div>
   </div>
+
 </div>
 </template>
 
@@ -61,7 +66,10 @@ export default {
           alert('Please login!')
           console.log("Please login!")
         })
-    }
+    },
+		singlePost(id){
+			this.$router.push('/detail-post/'+id);
+		}
   },
   created() {
     this.listItems()
