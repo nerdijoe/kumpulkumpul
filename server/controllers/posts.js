@@ -88,7 +88,7 @@ methods.addRsvp = function(req, res) {
   console.log("** add RSVP, user_id=", user_id)
 
   Post.findById( req.params.id, (error, post) => {
-    if(error) resn.json({error})
+    if(error) res.json({error})
     else {
       if(post){
         // check if user has already rsvp
