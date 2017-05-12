@@ -16,17 +16,18 @@ methods.insertOne = function(req, res) {
 
 methods.getAll = function(req, res) {
     Post.find({})
-        .populate('user_id')
+        .populate('user_id rsvp')
         .exec((error, records) => {
             if (error) {
                 res.json({
                     error
                 })
             } else {
+                // res.send(records)
                 let arr = [];
                 records.forEach(function(val) {
                     let obj = {};
-                    obj.id = val._id;
+                    obj._id = val._id;
                     obj.title = val.title;
                     obj.time = val.time;
                     obj.place = val.place;
@@ -43,13 +44,14 @@ methods.getAll = function(req, res) {
 }
 
 methods.getById = function(req, res){
-  Post.findById(req.params.id, function(error, record){
-    if(error){
+  Post.findById(req.params.id).populate('user_id rsvp').exec((error, record) => {
+   if(error){
       res.json({error})
     } else {
       res.json(record)
     }
   })
+ 
 }
 
 methods.updateById = function(req, res) {
