@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
 		<h1></h1>
-		<img class="ui centered massive image" src="../assets/logo2.png">
+		<img id="front" class="ui centered massive image" src="../assets/logo2.png">
 		<!-- <h1 class="ui centered align header">Meetup-Yuk.com </h1> -->
   </div>
 </template>
@@ -20,5 +20,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+ .ui.massive.image {
+  width: auto;
+ }
 
 </style>
