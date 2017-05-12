@@ -2,8 +2,8 @@
   <div id="app">
 		<navbar></navbar>
 		<div id="front" class="ui items segment padtop-6 container">
-    <router-view></router-view>
-	</div>
+      <router-view></router-view>
+	  </div>
   </div>
 </template>
 

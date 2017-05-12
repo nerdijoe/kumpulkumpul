@@ -19,7 +19,7 @@
         <div class="extra content">
           <a>
             <i class="user icon"></i>
-            22 Friends
+            {{ post.rsvp.length }} Members going
           </a>
         </div>
       </div>
@@ -46,17 +46,7 @@
 </template>
 <script>
 
-// var config = {
-//   apiKey: "AIzaSyA5qfMCJQY2hNWUfoqrCliwgNtm2nsoLUE",
-//   authDomain: "noobijoe.firebaseapp.com",
-//   databaseURL: "https://noobijoe.firebaseio.com",
-//   projectId: "noobijoe",
-//   storageBucket: "noobijoe.appspot.com",
-//   messagingSenderId: "252696857462"
-// };
-// firebase.initializeApp(config);
-
-
+// Firebase config is defined in Posts.vue
 var database = firebase.database();
 
 function writePostData(secretKey, post_id) {
@@ -74,33 +64,31 @@ export default {
   props: ['id'],
   data() {
     return {
-      post : {},
+      post : { rsvp:[] },
     }
   },
   methods: {
     getPostId() {
       let self = this
       axios.get(`http://localhost:3000/posts/${this.id}`, {
-      headers: {
-      token: localStorage.getItem('token')
-      }
+        headers: {
+          token: localStorage.getItem('token')
+        }
       })
       .then(response => {
-      if (response.config.headers.token == null) {
-      alert('Please login!')
-      } else {
-      self.post = response.data
-      console.log('postnya ', response)
-      }
+        if (response.config.headers.token == null) {
+          alert('Please login!')
+        } else {
+          self.post = response.data
+          console.log('postnya ', response)
+        }
       })
       .catch(error => {
-      alert('Please login!')
-      console.log("Please login!")
+        alert('Please login!')
+        console.log("Please login!")
       })
     }, // end of getPostId
     rsvp(id) {
-      // alert(`id='${id}'`)
-
       axios.post('http://localhost:3000/posts/' + id + '/addRsvp', {}, {
         headers: {
           token: localStorage.getItem('token')
@@ -117,19 +105,16 @@ export default {
           this.getPostId();
           writePostData(this.secretKey, id);
           console.log("RSVP successful")
-
         }
         else(
           alert('You have RSVP for this event')
         )
-
 
       })
       .catch(error => {
         alert('Please Login to RSVP this Event')
         console.log('Please Login to RSVP this Event')
       })
-
 
     } // end of rsvp
   },

@@ -23,7 +23,7 @@
 
         <span class="left floated ui orange button">
           <i class="users icon"></i>
-          {{post.rsvp.length}} people join
+          {{post.rsvp.length}} Members going
         </span>
 
         <span class="right floated ui green button" v-on:click="rsvp(post._id)">
@@ -41,19 +41,7 @@
 
 <script>
 
-// declare firebase here
-
-// require('dotenv').config();
-
-// var config = {
-//   apiKey: process.env.apiKey,
-//   authDomain: process.env.authDomain,
-//   databaseURL: process.env.databaseURL,
-//   projectId: process.env.projectId,
-//   storageBucket: process.env.storageBucket,
-//   messagingSenderId: process.env.messagingSenderId
-// };
-// firebase.initializeApp(config);
+// initialize firebase here
 
 var config = {
   apiKey: "AIzaSyA5qfMCJQY2hNWUfoqrCliwgNtm2nsoLUE",
@@ -174,9 +162,6 @@ export default {
   }
 
 } // end of export
-
-
-
 
 
 </script>

@@ -95,16 +95,6 @@ methods.addRsvp = function(req, res) {
     if(error) res.json({error})
     else {
       if(post){
-        // check if user has already rsvp
-          // if yes do not add to rsvp
-          // if no, add user
-
-        // var user_id_obj = mongoose.Types.ObjectId(req.decoded._id);
-        // console.log(post.rsvp);
-        // var array = ["1","2,","3"];
-        // var elementPos = array.map(function(x) {return x; }).indexOf("3");
-        // var elementPos = post.rsvp.map(function(x) {return x; }).indexOf(user_id);
-        // console.log("___ elementPos=",elementPos)
 
         var is_found = false;
         post.rsvp.map( (id) => {

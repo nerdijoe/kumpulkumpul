@@ -5,9 +5,11 @@ require('semantic-ui-css/semantic.js')
 import Vue from 'vue'
 import App from './App'
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 import router from './router'
 
 Vue.component('navbar', Navbar)
+Vue.component('footer', Footer)
 
 Vue.config.productionTip = false
 
