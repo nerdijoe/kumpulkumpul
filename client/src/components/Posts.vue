@@ -1,48 +1,51 @@
 <template>
 <div class="ui items">
   <div class="ui left action fluid icon input">
-
-    <input type="text" placeholder=" Search" class="home-search-input" v-model="inputSearch">
-    <div type="submit" class="ui large primary button searchbtn" v-on:click="searchPost">Search</div>
-
+    <input type="text" placeholder=" Search" class="home-search-input" v-model="filterTitle">
   </div>
   <hr>
-
-  <div class="item" v-for="post in listPost[0] ">
-    <div class="image">
-      <img class="ui small image" v-bind:src="post.imageUrl">
-    </div>
-    <div class="content">
-      <a class="header">{{ post.title }}</a>
-      <div class="meta">
-        <span>{{ post.time }}</span>
+  <div class="ui link cards">
+    <div class="card" v-for="post in filteredTitle">
+      <div class="image">
+        <img v-bind:src="post.imageUrl">
       </div>
-      <div class="description">
-        <p>{{ post.description }}</p>
-      </div>
-      <div class="extra">
-        <div class="ui right floated primary button">
-          Read More
-          <i class="right chevron icon"></i>
+      <div class="content">
+        <div class="header">{{ post.title }}</div>
+        <div class="meta">
+          <a>{{ post.time }}</a>
         </div>
-        <div class="ui label">{{post.rsvp.length}} people join</div>
+        <div class="description">
+          {{ post.description }}
+        </div>
+      </div>
+      <div class="extra content">
+        <span class="right floated">
+          Read More
+        </span>
+        <span>
+          <i class="users icon"></i>
+          {{post.rsvp.length}} people join
+        </span>
       </div>
     </div>
   </div>
 </div>
 </template>
 
+
+
 <script>
 export default {
-  name: 'posts',
+  // name: 'posts',
   data() {
     return {
-      listPost: []
+      listPost: [],
+      filterTitle: ''
     }
   },
   methods: {
     listItems() {
-      let self = this
+      let self = this;
       axios.get('http://localhost:3000/posts', {
           headers: {
             token: localStorage.getItem('token')
@@ -52,9 +55,8 @@ export default {
           if (response.config.headers.token == null) {
             alert('Please login!')
           } else {
-            self.listPost = []
-            self.listPost.push(response.data)
-            console.log('postnya ', response)
+            self.listPost = response.data.records;
+            console.log('postnya ', response.data.records);
           }
         })
         .catch(error => {
@@ -65,6 +67,14 @@ export default {
   },
   created() {
     this.listItems()
+  },
+  computed: {
+    filteredTitle: function() {
+      let self = this;
+        return self.listPost.filter(function(post) {
+          return post.title.indexOf(self.filterTitle) !== -1;
+        })
+    }
   }
 
 }

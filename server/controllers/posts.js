@@ -22,7 +22,21 @@ methods.getAll = function(req, res) {
                     error
                 })
             } else {
-                res.json(records)
+                let arr = [];
+                records.forEach(function(val) {
+                    let obj = {};
+                    obj.id = val._id;
+                    obj.title = val.title;
+                    obj.time = val.time;
+                    obj.place = val.place;
+                    obj.description = val.description;
+                    obj.imageUrl = val.imageUrl;
+                    obj.user_id = val.user_id
+                    obj.createdAt = val.createdAt;
+                    obj.rsvp = val.rsvp;
+                    arr.push(obj);
+                })
+                res.json({records: arr, success: true});
             }
         })
 }
