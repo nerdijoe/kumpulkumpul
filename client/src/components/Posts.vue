@@ -4,7 +4,7 @@
     <input type="text" placeholder="Filter by title.." class="home-search-input" v-model="filterTitle">
   </div>
   <hr>
-  
+
   <div class="ui link cards">
     <div class="card" v-for="post in filteredTitle">
       <div class="image">
@@ -38,6 +38,9 @@
 
 
 <script>
+
+// declare firebase here
+
 export default {
   // name: 'posts',
   data() {
