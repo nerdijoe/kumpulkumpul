@@ -8,7 +8,9 @@ methods.signin = function(req, res){
   let user = req.user
   let token = jwt.sign({
     username: req.user.username,
-    role: req.user.role}, process.env.SECRET_KEY);
+    role: req.user.role,
+    _id: req.user._id    
+  }, process.env.SECRET_KEY);
     res.send(token)
 }
 

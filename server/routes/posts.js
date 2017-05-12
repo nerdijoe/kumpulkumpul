@@ -9,4 +9,6 @@ router.post('/', helper.auth,  postController.insertOne) // helperJob.reminder_e
 router.put('/:id', helper.auth, postController.updateById)
 router.delete('/:id', helper.auth, postController.deleteById)
 
+router.post('/:id/addRsvp', helper.auth, postController.addRsvp)
+
 module.exports = router;
