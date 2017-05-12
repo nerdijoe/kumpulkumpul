@@ -1,7 +1,7 @@
 <template>
 <div class="ui items">
   <div class="ui left action fluid icon input">
-    <input type="text" placeholder=" Search" class="home-search-input" v-model="filterTitle">
+    <input type="text" placeholder="Filter by title.." class="home-search-input" v-model="filterTitle">
   </div>
   <hr>
   <div class="ui link cards">
