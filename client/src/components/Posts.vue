@@ -167,7 +167,8 @@ export default {
     filteredTitle: function() {
       let self = this;
         return self.listPost.filter(function(post) {
-          return post.title.indexOf(self.filterTitle) !== -1;
+          let lowerCaseTitle = post.title.toLowerCase();
+          return lowerCaseTitle.indexOf(self.filterTitle) !== -1;
         })
     }
   }

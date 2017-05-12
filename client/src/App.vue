@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 		<navbar></navbar>
-		<div class="ui items segment padtop-6 container">
+		<div id="front" class="ui items segment padtop-6 container">
     <router-view></router-view>
 	</div>
   </div>
@@ -19,5 +19,8 @@ export default {
 </script>
 
 <style>
-
+/*#front {
+  box-shadow: none;
+  border: none;
+}*/
 </style>
