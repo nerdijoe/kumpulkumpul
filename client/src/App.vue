@@ -19,8 +19,8 @@ export default {
 </script>
 
 <style>
-#front {
+/*#front {
   box-shadow: none;
   border: none;
-}
+}*/
 </style>
