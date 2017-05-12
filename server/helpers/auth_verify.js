@@ -6,6 +6,8 @@ module.exports = {
     jwt.verify(req.headers.token, process.env.SECRET_KEY, function(err, decoded) {
       if (decoded) {
         req.decoded = decoded;
+        console.log("----------------decoded data is:")
+        console.log(decoded)
         next()
       } else {
         res.send('You must login!')
