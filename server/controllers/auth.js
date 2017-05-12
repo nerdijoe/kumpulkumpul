@@ -7,9 +7,12 @@ const methods = {}
 methods.signin = function(req, res){
   let user = req.user
   let token = jwt.sign({
+    name: req.user.name,
     username: req.user.username,
+    email: req.user.email,
+    phone: req.user.phone,
     role: req.user.role,
-    _id: req.user._id    
+    _id: req.user._id
   }, process.env.SECRET_KEY);
     res.send(token)
 }

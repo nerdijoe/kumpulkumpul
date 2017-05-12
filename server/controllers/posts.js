@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+let helperJob = require('../helpers/cron_job_email')
+
 const Post = require('../models/posts')
 const methods = {}
 
@@ -51,7 +53,7 @@ methods.getById = function(req, res){
       res.json(record)
     }
   })
- 
+
 }
 
 methods.updateById = function(req, res) {
@@ -117,6 +119,15 @@ methods.addRsvp = function(req, res) {
 
           post.save( (err, post) => {
             if(error) resn.json({error})
+
+            // do cron job
+            // send email
+            console.log('**** start');
+            let user = req.decoded;
+            let msg = `Dear ${user.name},\n\nAcara ${post.title} sebentar lagi akan dimulai. Silahkan bersiap-siap.\nTime: ${post.time}\nPlace: ${post.place}\n\nDescription: ${post.description}\n\nYours truly xoxo,\nMeetUpYuks Team`;
+            helperJob.reminder_email(user, post, msg)
+            console.log('**** end');
+
             res.json(post)
           })
         }

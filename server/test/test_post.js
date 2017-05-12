@@ -36,7 +36,7 @@ describe('Post', () => {
       })
       .end( (err, result) => {
         token = result.text
-        console.log("++++++ user token = ", token)
+        // console.log("++++++ user token = ", token)
 
         // create post
         var newPost = Post({
@@ -85,7 +85,7 @@ describe('Post', () => {
           result.should.have.status(200)
           result.body.should.be.an('object')
 
-          console.log(result.body)
+          // console.log(result.body)
           result.body.should.have.property('title')
           result.body.should.have.property('time')
           result.body.should.have.property('place')
@@ -113,8 +113,8 @@ describe('Post', () => {
       .set('token', token)
       .end( (err, result) => {
         result.should.have.status(200)
-        result.body.should.be.an('array')
-        result.body.length.should.equal(1)
+        result.body.should.be.an('object')
+        result.body.records.length.should.equal(1)
 
         done()
       })
@@ -142,6 +142,74 @@ describe('Post', () => {
     });
   });
 
+  describe('PUT - edit post by id', () => {
+    it('should edit that post', done => {
+
+      chai.request(server)
+      .put('/posts/'+post_id)
+      .set('token', token)
+      .send({
+        title : "VR Night",
+        time : "2017-05-15 15:00:00",
+        place : "Gandaria",
+        description : "VR time!",
+        imageUrl : "vr.jpg",
+
+      })
+      .end ( (err, result) => {
+        result.should.have.status(200)
+        result.body.should.be.an('object')
+
+        // console.log(result.body)
+        result.body.should.have.property('title')
+        result.body.should.have.property('time')
+        result.body.should.have.property('place')
+        result.body.should.have.property('description')
+        result.body.should.have.property('imageUrl')
+        result.body.should.have.property('createdAt')
+
+        result.body.title.should.equal('VR Night')
+        result.body.time.should.equal('2017-05-15 15:00:00')
+        result.body.place.should.equal('Gandaria')
+        result.body.description.should.equal("VR time!")
+        result.body.imageUrl.should.equal('vr.jpg')
+
+        done()
+      })
+
+    });
+  });
+
+  describe('DELETE - delete a post', () => {
+    it('should delete that post', done => {
+
+      chai.request(server)
+      .delete('/posts/'+post_id)
+      .set('token', token)
+      .end ( (err, result) => {
+        result.should.have.status(200)
+        result.body.should.be.an('object')
+
+        // console.log(result.body)
+        result.body.should.have.property('title')
+        result.body.should.have.property('time')
+        result.body.should.have.property('place')
+        result.body.should.have.property('description')
+        result.body.should.have.property('imageUrl')
+        result.body.should.have.property('createdAt')
+
+        result.body.title.should.equal('Poem Night')
+        result.body.time.should.equal('2017-05-15 10:00:00')
+        result.body.place.should.equal('Gandaria')
+        result.body.description.should.equal("Poem Night LOL")
+        result.body.imageUrl.should.equal('poem.jpg')
+
+        done()
+      })
+
+
+    });
+  });
 
 
 });

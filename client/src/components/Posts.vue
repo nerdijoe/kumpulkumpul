@@ -7,11 +7,11 @@
 
   <div class="ui link cards">
     <div class="card" v-for="post in filteredTitle">
-      <div class="image">
+      <div class="image" v-on:click="singlePost(post._id)">
         <img v-bind:src="post.imageUrl">
       </div>
       <div class="content">
-        <div class="header">{{ post.title }}</div>
+        <div class="header"><a v-on:click="singlePost(post._id)"> {{ post.title }} </a></div>
         <div class="meta">
           <a>{{ post.time }}</a>
         </div>
@@ -20,15 +20,13 @@
         </div>
       </div>
       <div class="extra content">
-        <span class="right floated ui red button" v-on:click="singlePost(post._id)">
-          Read More
-        </span>
+
         <span class="left floated ui orange button">
           <i class="users icon"></i>
           {{post.rsvp.length}} people join
         </span>
 
-        <span class="right floated ui red button" v-on:click="rsvp(post._id)">
+        <span class="right floated ui green button" v-on:click="rsvp(post._id)">
           RSVP
         </span>
 
