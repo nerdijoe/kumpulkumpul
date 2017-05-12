@@ -19,7 +19,7 @@
         <div class="extra content">
           <a>
             <i class="user icon"></i>
-            22 Friends
+            {{ post.rsvp.length }} Members going
           </a>
         </div>
       </div>
@@ -46,17 +46,7 @@
 </template>
 <script>
 
-// var config = {
-//   apiKey: "AIzaSyA5qfMCJQY2hNWUfoqrCliwgNtm2nsoLUE",
-//   authDomain: "noobijoe.firebaseapp.com",
-//   databaseURL: "https://noobijoe.firebaseio.com",
-//   projectId: "noobijoe",
-//   storageBucket: "noobijoe.appspot.com",
-//   messagingSenderId: "252696857462"
-// };
-// firebase.initializeApp(config);
-
-
+// Firebase config is defined in Posts.vue
 var database = firebase.database();
 
 function writePostData(secretKey, post_id) {
@@ -74,7 +64,7 @@ export default {
   props: ['id'],
   data() {
     return {
-      post : {},
+      post : { rsvp:[] },
     }
   },
   methods: {

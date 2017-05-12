@@ -23,7 +23,7 @@
 
         <span class="left floated ui orange button">
           <i class="users icon"></i>
-          {{post.rsvp.length}} people join
+          {{post.rsvp.length}} Members going
         </span>
 
         <span class="right floated ui green button" v-on:click="rsvp(post._id)">
