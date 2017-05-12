@@ -4,6 +4,7 @@
     <input type="text" placeholder="Filter by title.." class="home-search-input" v-model="filterTitle">
   </div>
   <hr>
+  
   <div class="ui link cards">
     <div class="card" v-for="post in filteredTitle">
       <div class="image">
@@ -26,9 +27,11 @@
           <i class="users icon"></i>
           {{post.rsvp.length}} people join
         </span>
+
       </div>
     </div>
   </div>
+
 </div>
 </template>
 
@@ -63,7 +66,10 @@ export default {
           alert('Please login!')
           console.log("Please login!")
         })
-    }
+    },
+		singlePost(id){
+			this.$router.push('/detail-post/'+id);
+		}
   },
   created() {
     this.listItems()
