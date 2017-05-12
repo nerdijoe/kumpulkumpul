@@ -38,7 +38,7 @@ function email(data, done) {
 
 	var api_key = 'key-06f7f089efacb7cce55e79eaed063b43';
 	var domain = 'sandboxdc8d329f2cc44c62b42a0b13f715abb6.mailgun.org';
-	var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+	var mailgun = require('mailgun-js')({apiKey: process.env.api_key, domain: process.env.domain});
 
 	mailgun.messages().send(data, function (error, body) {
 		console.log(body)
