@@ -71,26 +71,24 @@ export default {
     getPostId() {
       let self = this
       axios.get(`http://localhost:3000/posts/${this.id}`, {
-      headers: {
-      token: localStorage.getItem('token')
-      }
+        headers: {
+          token: localStorage.getItem('token')
+        }
       })
       .then(response => {
-      if (response.config.headers.token == null) {
-      alert('Please login!')
-      } else {
-      self.post = response.data
-      console.log('postnya ', response)
-      }
+        if (response.config.headers.token == null) {
+          alert('Please login!')
+        } else {
+          self.post = response.data
+          console.log('postnya ', response)
+        }
       })
       .catch(error => {
-      alert('Please login!')
-      console.log("Please login!")
+        alert('Please login!')
+        console.log("Please login!")
       })
     }, // end of getPostId
     rsvp(id) {
-      // alert(`id='${id}'`)
-
       axios.post('http://localhost:3000/posts/' + id + '/addRsvp', {}, {
         headers: {
           token: localStorage.getItem('token')
@@ -107,19 +105,16 @@ export default {
           this.getPostId();
           writePostData(this.secretKey, id);
           console.log("RSVP successful")
-
         }
         else(
           alert('You have RSVP for this event')
         )
-
 
       })
       .catch(error => {
         alert('Please Login to RSVP this Event')
         console.log('Please Login to RSVP this Event')
       })
-
 
     } // end of rsvp
   },

@@ -41,19 +41,7 @@
 
 <script>
 
-// declare firebase here
-
-// require('dotenv').config();
-
-// var config = {
-//   apiKey: process.env.apiKey,
-//   authDomain: process.env.authDomain,
-//   databaseURL: process.env.databaseURL,
-//   projectId: process.env.projectId,
-//   storageBucket: process.env.storageBucket,
-//   messagingSenderId: process.env.messagingSenderId
-// };
-// firebase.initializeApp(config);
+// initialize firebase here
 
 var config = {
   apiKey: "AIzaSyA5qfMCJQY2hNWUfoqrCliwgNtm2nsoLUE",
@@ -174,9 +162,6 @@ export default {
   }
 
 } // end of export
-
-
-
 
 
 </script>
