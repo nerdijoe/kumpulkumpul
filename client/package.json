@@ -10,6 +10,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "dotenv": "^4.0.0",
+    "fs": "0.0.1-security",
     "semantic-ui-css": "^2.2.10",
     "vue": "^2.2.6",
     "vue-router": "^2.3.1"
