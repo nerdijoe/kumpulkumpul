@@ -24,15 +24,47 @@ module.exports = {
 		  true, /* Start the job right now */
 		  'Asia/Jakarta' /* Time zone of this job. */
 		);
+  },
+  reminder_email: function(user, post, message) {
+    let data = {
+      from: `Edim <edimdendi@gmail.com>`,
+      to: user.email,
+      subject: `MeetUpYuks Reminder`,
+      text: message
+    };
+
+
+    var date = new Date(post.time);
+    console.log("date", date);
+    var hour = date.getHours();
+    var minute = date.getMinutes();
+
+
+    var job = new CronJob(`00 ${minute-2} ${hour} * * 1-5`, function() {
+
+      var job = queue.create('email',
+        data
+        ).save(function(err) {
+          if (!err) console.log(job.id);
+          console.log('reminder_email     here', err)
+        });
+      },
+      null,
+      true, /* Start the job right now */
+      'Asia/Jakarta' /* Time zone of this job. */
+    );
+
+    queue.process('email', function(output, done) {
+        email(output.data, done);
+    });
+
+    console.log('created cron job');
   }
 }
 
 
 
 
-queue.process('email', function(output, done) {
-    email(output.data, done);
-});
 
 function email(data, done) {
 
