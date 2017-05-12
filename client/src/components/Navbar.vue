@@ -85,7 +85,7 @@ export default {
   name: 'navbar',
   data() {
     return {
-      logo: 'MeetupYuk',
+      logo: 'MeetupYuks',
       login: true,
       signin: {
         username: '',
