@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="extra content">
-        <span class="right floated ui red button" v-on:click="singlePost(post.id)">
+        <span class="right floated ui red button" v-on:click="singlePost(post._id)">
           Read More
         </span>
         <span class="left floated ui orange button">
@@ -28,7 +28,7 @@
           {{post.rsvp.length}} people join
         </span>
 
-        <span class="right floated ui red button" v-on:click="rsvp(post.id)">
+        <span class="right floated ui red button" v-on:click="rsvp(post._id)">
           RSVP
         </span>
 

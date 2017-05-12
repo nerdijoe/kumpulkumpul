@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="three wide column">
-      <button class="ui primary button">
+      <button class="ui primary button" v-on:click="rsvp(post._id)">
         <i class="user icon"></i>
           Join or RSVP
       </button>
@@ -40,45 +40,115 @@
   </div>
   </div>
   </div>
-  
+
 </div>
 </div>
 </template>
 <script>
-export default {
-name: 'detailPost',
-props: ['id'],
-data() {
-return {
-post : {},
+
+// var config = {
+//   apiKey: "AIzaSyA5qfMCJQY2hNWUfoqrCliwgNtm2nsoLUE",
+//   authDomain: "noobijoe.firebaseapp.com",
+//   databaseURL: "https://noobijoe.firebaseio.com",
+//   projectId: "noobijoe",
+//   storageBucket: "noobijoe.appspot.com",
+//   messagingSenderId: "252696857462"
+// };
+// firebase.initializeApp(config);
+
+
+var database = firebase.database();
+
+function writePostData(secretKey, post_id) {
+  firebase.database().ref('posts/' + secretKey).set({
+    post_id: post_id
+  });
+  console.log('----> write')
 }
-},
+
+
+
+
+export default {
+  name: 'detailPost',
+  props: ['id'],
+  data() {
+    return {
+      post : {},
+    }
+  },
   methods: {
     getPostId() {
-let self = this
-axios.get(`http://localhost:3000/posts/${this.id}`, {
-headers: {
-token: localStorage.getItem('token')
-}
-})
-.then(response => {
-if (response.config.headers.token == null) {
-alert('Please login!')
-} else {
-self.post = response.data
-console.log('postnya ', response)
-}
-})
-.catch(error => {
-alert('Please login!')
-console.log("Please login!")
-})
-},
+      let self = this
+      axios.get(`http://localhost:3000/posts/${this.id}`, {
+      headers: {
+      token: localStorage.getItem('token')
+      }
+      })
+      .then(response => {
+      if (response.config.headers.token == null) {
+      alert('Please login!')
+      } else {
+      self.post = response.data
+      console.log('postnya ', response)
+      }
+      })
+      .catch(error => {
+      alert('Please login!')
+      console.log("Please login!")
+      })
+    }, // end of getPostId
+    rsvp(id) {
+      // alert(`id='${id}'`)
+
+      axios.post('http://localhost:3000/posts/' + id + '/addRsvp', {}, {
+        headers: {
+          token: localStorage.getItem('token')
+        }
+      })
+      .then(response => {
+        console.log(response);
+
+        console.log(this.listPost);
+
+        if(response.data.hasOwnProperty('_id')) {
+
+          // this.post.rsvp.push(id);
+          this.getPostId();
+          writePostData(this.secretKey, id);
+          console.log("RSVP successful")
+
+        }
+        else(
+          alert('You have RSVP for this event')
+        )
+
+
+      })
+      .catch(error => {
+        alert('Please Login to RSVP this Event')
+        console.log('Please Login to RSVP this Event')
+      })
+
+
+    } // end of rsvp
   },
   created(){
     this.getPostId()
+
+    let self = this;
+    var listenToPost = firebase.database().ref('posts/' + this.secretKey );
+    listenToPost.on('value', function(snapshot) {
+      // updateStarCount(postElement, snapshot.val());
+      console.log("listen: ", snapshot.val());
+      // app.changes(snapshot.val().post_id);
+      self.getPostId()
+      firebase.database().ref('posts/'+self.secretKey).remove();
+    })
   }
+
 }
+
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
